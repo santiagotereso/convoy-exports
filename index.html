@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hoja de exports CVY26_001</title>
+<style>
+:root{
+  --bg:#0f1115; --panel:#171a21; --panel2:#1d2129; --panel3:#22262f; --line:#2a2f3a; --line2:#353b47;
+  --txt:#e8ebf0; --muted:#9aa3b2; --dim:#6f7889;
+  --video:#3a86ff; --audio:#2f9e6e; --graf:#f4a259; --doc:#58c1d6;
+  --warn:#f4a259;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:"Segoe UI",Roboto,Arial,sans-serif;font-size:14px;line-height:1.5}
+a{color:#86b4ff}
+code,.mono,.kbd{font-family:"Cascadia Mono",Consolas,"Courier New",monospace}
+.kbd{background:var(--panel3);border:1px solid var(--line2);border-radius:5px;padding:1px 6px;font-size:12px;white-space:nowrap}
+button{font:inherit;cursor:pointer}
+input,select{font:inherit;color:var(--txt);background:var(--panel2);border:1px solid var(--line2);border-radius:7px;padding:6px 9px}
+input:focus,select:focus{outline:none;border-color:#4a71c9}
+.em{color:var(--muted)}
+
+header{padding:22px 30px 18px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#13161c,#0f1115)}
+.hrow{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;max-width:1200px;margin:0 auto}
+h1{margin:0 0 4px;font-size:21px;letter-spacing:.3px}
+.sub{color:var(--muted);font-size:13px;max-width:760px}
+.pill{font-size:11.5px;color:#9dc0ff;border:1px solid #2c4a7d;background:#16233a;border-radius:20px;padding:4px 12px;white-space:nowrap}
+
+main{max-width:1200px;margin:0 auto;padding:20px 30px 90px}
+
+.meta{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-end;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:8px;position:sticky;top:0;z-index:20}
+.meta label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);margin-bottom:4px}
+.epfield{flex:0 1 340px;min-width:220px}
+.epfield select{width:100%;font-size:15px;font-weight:600;padding:8px 10px}
+.mhint{flex:1 1 260px;font-size:12px;color:var(--dim);line-height:1.6;padding-bottom:2px}
+.basepv{font-size:12px;color:var(--dim);margin:0 2px 22px;font-family:"Cascadia Mono",Consolas,monospace}
+.basepv b{color:#bcd6ff;font-weight:400}
+
+h2{font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin:34px 0 10px;font-weight:700;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+h2 .cnt{font-size:12px;font-weight:600;color:var(--dim);text-transform:none;letter-spacing:0}
+h2 .copyall{margin-left:auto;font-size:11.5px;padding:4px 10px;border-radius:7px;border:1px solid var(--line2);background:var(--panel2);color:var(--muted);text-transform:none;letter-spacing:0;font-weight:500}
+h2 .copyall:hover{color:var(--txt);border-color:#4a5265}
+.lead{color:var(--muted);font-size:13px;margin:-4px 0 14px;max-width:980px}
+
+.item{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:11px;padding:14px 16px;border-left:3px solid var(--line2)}
+.item.c-video{border-left-color:var(--video)}
+.item.c-audio{border-left-color:var(--audio)}
+.item.c-graf{border-left-color:var(--graf)}
+.item.c-doc{border-left-color:var(--doc)}
+.iname{font-weight:600;font-size:14.5px;margin-bottom:3px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.badge{font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:5px;border:1px solid}
+.b-sp{color:#9dc0ff;border-color:#2c4a7d;background:#16233a}
+.b-as{color:#8fe3bb;border-color:#1d5138;background:#12241c}
+.idesc{font-size:12.5px;color:var(--muted);margin-bottom:9px;max-width:900px}
+.plain{font-size:13px;color:var(--txt);margin-bottom:8px;max-width:900px}
+.ibul{margin:0 0 10px;padding-left:20px;font-size:12.5px;color:var(--txt);max-width:900px}
+.ibul li{margin-bottom:3px}
+.ibul li.keep{color:#8fe3bb}
+.specs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.spec{font-size:11.5px;padding:2px 8px;border-radius:5px;background:var(--panel3);color:#c5cbd6;border:1px solid var(--line2)}
+.spec.hi{background:#2a2313;color:#f0c489;border-color:#5a4a24}
+.fname{font-size:11.5px;background:#0d1016;border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:#bcd6ff;word-break:break-all;position:relative;padding-right:64px;font-family:"Cascadia Mono",Consolas,monospace}
+.fname .lbl{display:block;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;font-family:"Segoe UI",Roboto,Arial,sans-serif}
+.fname .cp{position:absolute;right:7px;top:7px;font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--line2);background:var(--panel2);color:var(--muted);font-family:"Segoe UI",Roboto,Arial,sans-serif}
+.fname .cp:hover{color:var(--txt)}
+.inf{color:var(--warn);border-bottom:1px dotted var(--warn);cursor:help}
+.callout{margin-top:10px;border-left:3px solid var(--warn);background:#231d12;border-radius:0 8px 8px 0;padding:9px 12px;font-size:12.5px;color:#f0c489;line-height:1.55}
+.callout b{color:#ffd9a3}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-bottom:12px}
+.card ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:13px}
+.card li{margin-bottom:5px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+
+footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px solid var(--line);color:var(--dim);font-size:12px;line-height:1.7}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#1d2129;border:1px solid var(--line2);color:var(--txt);padding:9px 16px;border-radius:9px;font-size:13px;opacity:0;pointer-events:none;transition:.18s;z-index:99}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media print{
+  body{background:#fff;color:#111}
+  .meta{position:static;background:#fff;border-color:#ccc}
+  .item,.card{background:#fff;border-color:#ccc;break-inside:avoid}
+  .fname{background:#f4f6fa;color:#123;border-color:#ccc}
+  .fname .cp,.copyall{display:none}
+  .idesc,.lead,.card ul,.sub{color:#333}
+  .spec{background:#f0f2f6;color:#222;border-color:#ccc}
+  .callout{background:#fdf6e8;color:#6b4a10}
+  h2{color:#111}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hrow">
+    <div>
+      <h1>CVY26_001 · Project Convoy — qué exportar y cómo nombrarlo</h1>
+      <div class="sub">Hoja de specs para el equipo de exports. Cada tarjeta es un archivo que hay que sacar: el formato, el nombre exacto y por dónde se sube. Elegí el episodio arriba y los nombres se arman solos.</div>
+    </div>
+    <div class="pill">Show code CVY_026</div>
+  </div>
+</header>
+
+<main>
+  <div class="meta" id="meta">
+    <div class="epfield"><label>Episodio</label><select id="f_num"></select></div>
+    <div class="mhint">
+      Elegí el episodio y los <b id="nfiles">–</b> nombres de archivo se rearman solos.<br>
+      <b>Copiar</b> deja el nombre listo en el portapapeles.
+    </div>
+  </div>
+  <div class="basepv" id="basepv"></div>
+
+  <div id="sections"></div>
+
+  <h2>A dónde se sube cada cosa</h2>
+  <div class="card">
+    <table>
+      <tr><th style="width:24%">Qué</th><th style="width:13%">Canal</th><th style="width:23%">To</th><th>Detalle</th></tr>
+      <tr>
+        <td><b>Video y captions</b><br><span class="em">Los 4 videos + el .SRT</span></td>
+        <td><span class="badge b-sp">SharePoint</span></td>
+        <td class="em">Carpeta SharePoint del proyecto</td>
+        <td class="em">Mattel los watermarkea con steg.ai. Cuando termina de subir, avisar por mail a producción.</td>
+      </tr>
+      <tr>
+        <td><b>Audio y gráficos</b><br><span class="em">Los 5 stems + el GFX collect</span></td>
+        <td><span class="badge b-as">Aspera</span></td>
+        <td class="em">matteltvdub@Mattel.com</td>
+        <td class="em">Zippear lo pesado. Título del paquete: <span class="kbd" id="asperaTitle">CVY_026 – PROJECT CONVOY – FINAL FOR BROADCAST</span>. En el campo de <b>notas</b> va el <b>ASSET RUNTIME</b> del episodio.</td>
+      </tr>
+    </table>
+    <ul>
+      <li><b>Cutoffs de entrega:</b> de lunes a jueves hasta las <b>17:00 PT</b>. Los viernes hay que entregar <i>y</i> confirmar antes de las <b>12:00 PT</b>.</li>
+      <li>CC del envío por Aspera: <span class="kbd">DEG.ChannelManagement@mattel.com</span> · <span class="kbd">MattelCentralCreativePost@mattel.com</span> · más la lista nominal de Mattel — <b>pedísela a producción antes del primer envío</b>, no está publicada acá.</li>
+      <li>Usar el project code <b>CVY_026 / CVY26_001</b> en el nombre de los archivos y en toda comunicación de post.</li>
+      <li>Dudas de proceso o de spec: preguntale a producción de 3DAR antes de subir. El contacto directo en Mattel lo maneja producción.</li>
+    </ul>
+  </div>
+
+  <h2>Reglas que aplican a todos los videos</h2>
+  <div class="card">
+    <ul>
+      <li><b>Ready-to-view:</b> sin slate, sin barras, sin countdown, sin textless pegado al final. El programa arranca en el frame 1.</li>
+      <li><b>El time code empieza en 00:00:00:00</b> en los cuatro archivos de video, y el primer frame de programa cae exactamente ahí.</li>
+      <li>1920×1080 · 23.98 fps · audio 2.0 estéreo L/R · 48 kHz / 24 bit.</li>
+      <li>Legal line en pantalla: <span class="kbd">© 2026 Mattel, Inc.</span></li>
+      <li>Los cuatro videos tienen que ser <b>frame-accurate entre sí</b>: mismo largo, mismo punto de arranque, mismo contenido. El textless solo se diferencia por los textos removidos.</li>
+      <li>QC propio antes de subir: continuidad, ejecución y técnica. Si Mattel encuentra errores en su QC, la entrega no cuenta como entregada hasta corregir y reentregar.</li>
+    </ul>
+  </div>
+
+  <h2>Cómo se arma el nombre</h2>
+  <div class="card">
+    <div class="fname" style="padding-right:12px"><span class="lbl">Video</span>ProjectNumber_Brand_ProjectTitle_SeriesNumber_EpisodeNumber_EpisodeTitle_ContentClass_FrameRate_AudioLayout_AudioQuality_VideoCodec_Version_LanguageCode</div>
+    <div class="fname" style="margin-top:8px;padding-right:12px"><span class="lbl">Audio (stems)</span>…_EpisodeNumber_EpisodeTitle_ContentClass_24bit_48kHz_Version_LanguageCode</div>
+    <div class="fname" style="margin-top:8px;padding-right:12px"><span class="lbl">Captions</span>…_EpisodeNumber_EpisodeTitle_ClosedCaptions_2398fps_Version_LanguageCode</div>
+    <div class="fname" style="margin-top:8px;padding-right:12px"><span class="lbl">Gráficos</span>…_EpisodeNumber_EpisodeTitle_ContentClass_Version_LanguageCode</div>
+    <ul>
+      <li>Lo único que cambia entre los archivos de un mismo episodio es el <b>ContentClass</b> (y el codec en video). Todo el prefijo es fijo: <span class="kbd">CVY26_001_Mattel_ProjectConvoy_S1</span>.</li>
+      <li><b>Version</b> y <b>LanguageCode</b> son fijos para toda la serie: siempre <span class="kbd">V1</span> y <span class="kbd">ENG</span>. Si alguna vez hay que reentregar un episodio corregido, ese <span class="kbd">V1</span> pasa a <span class="kbd">V2</span> — avisen y lo cambio acá para todos.</li>
+      <li>Sin espacios, sin acentos, sin caracteres raros. El separador es siempre <span class="kbd">_</span>.</li>
+      <li>Los tokens marcados <span class="inf">así</span> no figuran textuales en el Filename Generator de Mattel: están deducidos del patrón y a confirmar con el cliente antes de la primera entrega. Si cambian, se avisa y se renombra — no bloquean el export.</li>
+      <li>Extensiones válidas: video <span class="kbd">.mov .mp4</span> · captions <span class="kbd">.srt</span> · audio <span class="kbd">.wav .aiff .zip</span> · gráficos <span class="kbd">.zip .aep .prproj .psd</span>.</li>
+    </ul>
+  </div>
+
+  <h2>Lo que completa la entrega y no sale de acá</h2>
+  <div class="card">
+    <ul>
+      <li><b>As-aired script</b> y <b>music cue sheet</b> del episodio — los arma producción, van por SharePoint con el resto.</li>
+      <li><b>Reporte PSE (Harding) de VidChecker</b> corrido sobre el ProRes master — viaja con el paquete de Aspera.</li>
+      <li><b>Canciones</b>, si el episodio tiene: full mix, instrumental y vocal en .wav 48 kHz / 24 bit, con su propio naming.</li>
+      <li><b>Wrap folder</b> y <b>disco de archival</b> — son entregas de proyecto, no de episodio.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Specs sacadas de los PDFs de Mattel: <b>1_Filename Generator</b> · <b>2_Specs and Deliverables (20/07/26)</b> · <b>3_Delivery Instructions (21/07/26)</b> — carpeta <span class="mono">02_from-client/Deliverables</span> del Drive del proyecto.<br>
+    Los títulos de los 8 episodios salen del <a href="https://lucilatr.github.io/convoy-breakdown/convoy_breakdown.html">convoy_breakdown</a> y están fijos acá adentro (funciona sin internet). Esta hoja es solo informativa: no guarda ni sube nada. El seguimiento de qué está entregado lo lleva producción.
+  </footer>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PROJ = {num:'CVY26_001', brand:'Mattel', title:'ProjectConvoy', series:'S1', show:'CVY_026'};
+
+const ITEMS = [
+  {sec:'video', name:'Master ProRes 422 HQ', chan:'sp', cls:'video',
+   plain:'La alta normal, que contiene todo.',
+   desc:'Master final con textos y gráficos, ready-to-view. Es el archivo del que sale todo lo demás.',
+   specs:['Apple ProRes 422 (HQ)','MOV / QuickTime','1920×1080','23.98 fps','2.0 estéreo L/R','48 kHz / 24 bit','TC desde 00:00:00:00'],
+   kind:'video', cc:'Original_Master', codec:'ProRes422HQ', ext:'mov'},
+
+  {sec:'video', name:'Textless ProRes 422 HQ', chan:'sp', cls:'video',
+   plain:'La misma alta que el master, pero limpia de textos:',
+   bullets:[
+     'Sin logo de Matchbox Movie',
+     'Sin logo de episodio',
+     'Sin nombre de personajes',
+     'Sin logo final de Matchbox',
+     ['keep','<b>Incluyendo</b> la animación final de Mattel']
+   ],
+   desc:'Mismo largo y mismo arranque que el master — no es un corte aparte, es el mismo corte sin los textos superpuestos (los que se crean en After Effects, Photoshop y Premiere).',
+   specs:['Apple ProRes 422 (HQ)','MOV','1920×1080','23.98 fps','48 kHz / 24 bit','Sin textos superpuestos'],
+   kind:'video', cc:'Original_Textless', ccInf:true, codec:'ProRes422HQ', ext:'mov'},
+
+  {sec:'video', name:'Screener H.264 limpio', chan:'sp', cls:'video',
+   plain:'Un H.264 normal, en relativa buena calidad.',
+   desc:'Es para visionado: sin time code quemado y sin ninguna marca en imagen. El contenido es el mismo que el master (con textos).',
+   specs:['H.264 High Profile','MP4 / MPEG-4','1920×1080','23.98 fps','2.0 estéreo full mix'],
+   kind:'video', cc:'Original_Screener', ccInf:true, codec:'H264', codecInf:true, ext:'mp4'},
+
+  {sec:'video', name:'Screener H.264 con BITC', chan:'sp', cls:'video',
+   plain:'Un H.264 normal, en relativa buena calidad, con time code quemado desde 00:00:00:00.',
+   desc:'Es el mismo screener pero con el time code visible en imagen (burned-in time code), para que Mattel pueda mandar notas referenciadas por timecode.',
+   specs:['H.264 High Profile','MP4','1920×1080','23.98 fps','2.0 estéreo full mix','TC arranca en 00:00:00:00'],
+   hi:'TC arranca en 00:00:00:00',
+   note:'<b>El time code empieza en 00:00:00:00.</b> El primer frame de programa es 00:00:00:00 — no 01:00:00:00 ni 10:00:00:00. El BITC tiene que coincidir frame a frame con el master y con el screener limpio, así una nota que manda Mattel cae en el mismo lugar en los tres archivos. Ubicarlo abajo, centrado, legible y sin tapar acción ni gráficos.',
+   kind:'video', cc:'Original_Screener_BITC', ccInf:true, codec:'H264', codecInf:true, ext:'mp4'},
+
+  {sec:'audio', name:'Stem — Full Mix (Comp)', chan:'as', cls:'audio',
+   desc:'Mezcla completa 2.0: exactamente la misma que está pegada al master de video.',
+   specs:['WAV','48 kHz / 24 bit','2.0 estéreo','−14 LUFS ±1 · TP ≤ −1.0 dBTP'],
+   kind:'audio', cc:'20_Fullmix', ext:'wav'},
+
+  {sec:'audio', name:'Stem — Dialog', chan:'as', cls:'audio',
+   desc:'Stem de diálogo solo.',
+   specs:['WAV','48 kHz / 24 bit','2.0 estéreo'],
+   kind:'audio', cc:'20_Dialog', ccInf:true, ext:'wav'},
+
+  {sec:'audio', name:'Stem — M&amp;E', chan:'as', cls:'audio',
+   desc:'Music &amp; effects, sin diálogo. Es el que usan para doblar a otros idiomas, así que tiene que sostenerse solo.',
+   specs:['WAV','48 kHz / 24 bit','2.0 estéreo'],
+   kind:'audio', cc:'20_ME', ccInf:true, ext:'wav'},
+
+  {sec:'audio', name:'Stem — Music (MX)', chan:'as', cls:'audio',
+   desc:'Stem de música solo.',
+   specs:['WAV','48 kHz / 24 bit','2.0 estéreo','Puede tener más rango dinámico que el broadcast'],
+   kind:'audio', cc:'20_Music', ccInf:true, ext:'wav'},
+
+  {sec:'audio', name:'Stem — SFX', chan:'as', cls:'audio',
+   desc:'Stem de efectos solo.',
+   specs:['WAV','48 kHz / 24 bit','2.0 estéreo'],
+   kind:'audio', cc:'20_SFX', ccInf:true, ext:'wav'},
+
+  {sec:'cc', name:'Closed Captions — .SRT', chan:'sp', cls:'doc',
+   desc:'Captions del episodio en SRT, sincronizados contra el master. Mismo arranque que el video: los tiempos se cuentan desde 00:00:00:00.',
+   specs:['.srt','23.98 fps','Sincronizado con el master','UTF-8'],
+   kind:'cc', cc:'ClosedCaptions', ext:'srt'},
+
+  {sec:'gfx', name:'GFX Collect / package', chan:'as', cls:'graf',
+   plain:'El proyecto de gráficos entero, colectado y zippeado.',
+   desc:'Con fuentes y assets adentro: tiene que abrir en otra máquina sin nada offline. Va por Aspera, junto con los stems.',
+   specs:['.aep / .prproj / .psd colectado','Fuentes incluidas','Sin media offline','Zippear'],
+   kind:'doc', cc:'GFXCollect', ccInf:true, ext:'zip'}
+];
+
+const SECTIONS = [
+  {id:'video', title:'1 · Video',
+   lead:'Los cuatro archivos de imagen. Los cuatro van por SharePoint, para que Mattel los watermarkee con steg.ai. Ready-to-view y arrancando en 00:00:00:00.'},
+  {id:'gfx', title:'2 · Gráficos',
+   lead:'El collect del proyecto de gráficos del episodio. Va por Aspera.'},
+  {id:'audio', title:'3 · Audio — stems',
+   lead:'Cinco stems estéreo, todos 48 kHz / 24 bit .wav, con el mismo largo y el mismo arranque que el master de video. Van por Aspera.'},
+  {id:'cc', title:'4 · Captions',
+   lead:'Solo SRT. Va por SharePoint junto con los videos.'}
+];
+
+const CHAN = {sp:['b-sp','SharePoint'], as:['b-as','Aspera']};
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const clean = s => (s||'').trim().replace(/[\\/:*?"<>|]/g,'');
+
+/* Títulos de los 8 episodios (los mismos que van en pantalla en el título del episodio).
+   Fuente: convoy_breakdown — https://lucilatr.github.io/convoy-breakdown/convoy_breakdown.html */
+const EP_TITLES = {
+  '101':'Bridge Chase!',
+  '102':'Jungle Race!',
+  '103':'Fireworks Rescue!',
+  '104':'Dog Race Rescue!',
+  '105':'Booby Trap Building!',
+  '106':'Volcano Treasure!',
+  '107':'Highway Heroes!',
+  '108':'City Spy Chase!'
+};
+/* Fijos para toda la serie: no se tocan por episodio. */
+const VERSION = 'V1', LANG = 'ENG';
+
+const KEY = 'cvy26_exports_v2';
+let EP = {num: localStorage.getItem(KEY) || '101'};
+
+/* "Bridge Chase!" -> "BridgeChase" : sin espacios, sin signos, sin acentos */
+function epTitleToken(){
+  return (EP_TITLES[EP.num] || 'EpisodeTitle')
+    .replace(/[^A-Za-z0-9]/g,'');
+}
+function base(){
+  return [PROJ.num, PROJ.brand, PROJ.title, PROJ.series, clean(EP.num)||'101', epTitleToken()].join('_');
+}
+function fileName(item){
+  const v = VERSION, l = LANG;
+  switch(item.kind){
+    case 'video': return base()+'_'+item.cc+'_2398fps_20_24bit_48kHz_'+item.codec+'_'+v+'_'+l+'.'+item.ext;
+    case 'audio': return base()+'_'+item.cc+'_24bit_48kHz_'+v+'_'+l+'.'+item.ext;
+    case 'cc':    return base()+'_'+item.cc+'_2398fps_'+v+'_'+l+'.'+item.ext;
+    default:      return base()+'_'+item.cc+'_'+v+'_'+l+'.'+item.ext;
+  }
+}
+/* subraya los tokens deducidos dentro del nombre generado */
+function markInf(item, nm){
+  let out = esc(nm);
+  const toks = [];
+  if(item.ccInf) toks.push(item.cc);
+  if(item.codecInf) toks.push(item.codec);
+  toks.forEach(t => {
+    out = out.replace(t, '<span class="inf" title="Token deducido del patrón — a confirmar con el cliente">'+t+'</span>');
+  });
+  return out;
+}
+
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('on'); }, 1500);
+}
+function copy(txt, msg){
+  navigator.clipboard.writeText(txt).then(function(){ toast(msg||'Copiado'); })
+    .catch(function(){ toast('No se pudo copiar'); });
+}
+
+function render(){
+  $('#basepv').innerHTML = 'Prefijo común de este episodio: <b>' + esc(base()) + '</b>_…';
+  $('#sections').innerHTML = SECTIONS.map(function(sec){
+    const items = ITEMS.filter(function(i){ return i.sec === sec.id; });
+    return '<h2>' + esc(sec.title) + ' <span class="cnt">' + items.length + ' archivo' + (items.length>1?'s':'') + '</span>' +
+      '<button class="copyall" data-sec="' + sec.id + '">' + (items.length>1 ? 'Copiar los ' + items.length + ' nombres' : 'Copiar el nombre') + '</button></h2>' +
+      '<div class="lead">' + sec.lead + '</div>' +
+      items.map(function(i){
+        const ch = CHAN[i.chan], nm = fileName(i);
+        return '<div class="item c-' + i.cls + '">' +
+          '<div class="iname">' + i.name + ' <span class="badge ' + ch[0] + '">' + ch[1] + '</span></div>' +
+          (i.plain ? '<div class="plain">' + i.plain + '</div>' : '') +
+          (i.bullets ? '<ul class="ibul">' + i.bullets.map(function(b){
+            return Array.isArray(b) ? '<li class="' + b[0] + '">' + b[1] + '</li>' : '<li>' + b + '</li>';
+          }).join('') + '</ul>' : '') +
+          '<div class="idesc">' + i.desc + '</div>' +
+          '<div class="specs">' + i.specs.map(function(s){
+            return '<span class="spec' + (i.hi===s?' hi':'') + '">' + esc(s) + '</span>';
+          }).join('') + '</div>' +
+          '<div class="fname"><span class="lbl">Nombre del archivo</span>' + markInf(i, nm) +
+            '<button class="cp" data-nm="' + esc(nm) + '">Copiar</button></div>' +
+          (i.note ? '<div class="callout">' + i.note + '</div>' : '') +
+        '</div>';
+      }).join('');
+  }).join('');
+}
+
+document.addEventListener('click', function(e){
+  const cp = e.target.closest('.cp');
+  if(cp){ copy(cp.dataset.nm, 'Nombre copiado'); return; }
+  const ca = e.target.closest('.copyall');
+  if(ca){
+    const names = ITEMS.filter(function(i){ return i.sec===ca.dataset.sec; }).map(fileName).join('\n');
+    copy(names, 'Nombres copiados'); return;
+  }
+  const at = e.target.closest('#asperaTitle');
+  if(at){ copy(at.textContent.trim(), 'Título de Aspera copiado'); }
+});
+
+function syncEp(){
+  localStorage.setItem(KEY, EP.num);
+  render();
+  $('#nfiles').textContent = ITEMS.length;
+}
+
+const sel = $('#f_num');
+sel.innerHTML = Object.keys(EP_TITLES).map(function(n){
+  return '<option value="' + n + '">' + n + ' — ' + EP_TITLES[n] + '</option>';
+}).join('');
+if(!EP_TITLES[EP.num]) EP.num = '101';
+sel.value = EP.num;
+sel.addEventListener('change', function(e){ EP.num = e.target.value; syncEp(); });
+
+syncEp();
+</script>
+</body>
+</html>
