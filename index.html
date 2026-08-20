@@ -117,6 +117,33 @@ footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px so
 
   <div id="sections"></div>
 
+
+  <h2>Cómo se nombra adentro del AEP de gráficos <span class="cnt">propuesta</span></h2>
+  <div class="lead">Los cinco elementos de GFX del episodio. <b>La precomp en After Effects y el archivo que la alimenta se llaman igual</b> — cambia solo la extensión. El número de slot (01–05) es fijo y va en orden de aparición, así el panel de proyecto queda ordenado como el episodio.</div>
+  <div id="gfxspec"></div>
+
+  <div class="card">
+    <h3 style="margin:0 0 10px;font-size:14px">Las tres reglas que hacen que los 8 episodios salgan iguales</h3>
+    <ul>
+      <li><b>Si no dice <span class="kbd">ep1NN</span>, es de serie.</b> Los slots 01, 04 y 05 son idénticos en los ocho episodios: se construyen una vez y se reusan sin tocar. Si los editás para un episodio, los estás rompiendo para los otros siete. Solo los slots 02 y 03 cambian por episodio y por eso llevan el token del episodio.</li>
+      <li><b>La precomp se llama igual que su archivo.</b> <span class="kbd">CVY26_GFX_01_MatchboxMovieLogo.psd</span> alimenta a la precomp <span class="kbd">CVY26_GFX_01_MatchboxMovieLogo</span>. Si buscás uno encontrás el otro, y cuando se colecta el proyecto no hay que adivinar qué archivo era cuál.</li>
+      <li><b>La versión vive solo en el nombre del <span class="kbd">.aep</span>.</b> Adentro del proyecto no hay <span class="kbd">_final</span>, <span class="kbd">_ok</span>, <span class="kbd">_bueno</span>, <span class="kbd">_copy</span> ni <span class="kbd">_v2</span>. Si una comp quedó vieja, se borra; no se le agrega sufijo.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin:0 0 10px;font-size:14px">Estructura del proyecto</h3>
+    <div class="fname" style="padding-right:12px"><span class="lbl">Archivo del proyecto</span><span id="aepname"></span></div>
+    <div class="fname" style="margin-top:8px;padding-right:12px;white-space:pre;overflow-x:auto;word-break:normal" id="aeptree"></div>
+    <ul>
+      <li>Cuatro carpetas en el panel de proyecto, numeradas para que no se reordenen solas. Nada suelto en la raíz.</li>
+      <li><b>02_SOURCE</b> son los archivos que llama el AEP. La placa naranja va ahí como <span class="kbd">CVY26_GFX_03_NameTagPlate.psd</span>, sin token de episodio: es la misma placa en todos, lo único que cambia arriba es el nombre del personaje.</li>
+      <li>El cierre de Mattel (slot 05) es material que provee el cliente: entra tal cual en 02_SOURCE, no se reconstruye ni se recomprime.</li>
+      <li>Sin espacios, sin acentos y en inglés: el AEP se entrega a Mattel dentro del GFX Collect y lo abre gente que no habla español.</li>
+      <li>Antes de colectar: <i>File → Dependencies → Collect Files</i> con <b>Collect Source Files: All</b> y las fuentes incluidas. No puede quedar nada en rojo ni ningún vínculo fuera de la carpeta del proyecto.</li>
+    </ul>
+  </div>
+
   <h2>A dónde se sube cada cosa</h2>
   <div class="card">
     <table>
@@ -360,6 +387,86 @@ function render(){
   }).join('');
 }
 
+
+/* ---- Nombres adentro del AEP de graficos ----
+   scope 'serie'    -> identico en los 8 episodios, sin token de episodio
+   scope 'episodio' -> cambia por episodio, lleva ep1NN                      */
+const GFX_ELEMENTS = [
+  {slot:'01', scope:'serie',
+   que:'Logo de Matchbox Movie de la intro',
+   token:'MatchboxMovieLogo', src:'.psd',
+   nota:'Se arma una vez y se reusa igual en los ocho.'},
+  {slot:'02', scope:'episodio',
+   que:'Logo / título del episodio',
+   token:'EpisodeTitle', src:'.psd',
+   nota:'Es el único texto que cambia el nombre del episodio en pantalla.'},
+  {slot:'03', scope:'episodio',
+   que:'Nombre del personaje sobre la placa naranja',
+   token:'NameTag_<Personaje>', src:'.psd',
+   nota:'Una precomp por personaje: NameTag_Aimee, NameTag_Crosby, NameTag_Charmaine, NameTag_Sean, NameTag_Ted, NameTag_VonSteele. Si el mismo personaje se presenta dos veces, se agrega _02 al final. La placa naranja de fondo es única y vive en 02_SOURCE.'},
+  {slot:'04', scope:'serie',
+   que:'Logo de cierre de Matchbox',
+   token:'MatchboxEndLogo', src:'.psd',
+   nota:'Se arma una vez y se reusa igual en los ocho.'},
+  {slot:'05', scope:'serie',
+   que:'Cierre de Mattel',
+   token:'MattelEndLogo', src:'.mov',
+   nota:'Lo provee Mattel. Entra tal cual, no se reconstruye ni se recomprime. Es el único gráfico que SÍ queda en el textless.'}
+];
+
+function gfxName(el){
+  return el.scope === 'episodio'
+    ? 'CVY26_ep' + EP.num + '_GFX_' + el.slot + '_' + el.token
+    : 'CVY26_GFX_' + el.slot + '_' + el.token;
+}
+
+function renderGfx(){
+  const host = $('#gfxspec');
+  if(!host) return;
+
+  host.innerHTML = '<div class="card" style="padding:0;overflow:hidden"><table>' +
+    '<tr><th style="width:38px">#</th><th style="width:26%">Qué es</th>' +
+    '<th>Nombre de la precomp — y del archivo que la alimenta</th>' +
+    '<th style="width:92px">Alcance</th></tr>' +
+    GFX_ELEMENTS.map(function(el){
+      const nm = gfxName(el);
+      return '<tr>' +
+        '<td><b>' + el.slot + '</b></td>' +
+        '<td>' + esc(el.que) + '<div class="em" style="font-size:11.5px;margin-top:3px">' + esc(el.nota) + '</div></td>' +
+        '<td><div class="fname" style="margin:0"><span class="lbl">Precomp en AE</span>' + esc(nm) +
+          '<button class="cp" data-nm="' + esc(nm) + '">Copiar</button></div>' +
+          '<div class="em" style="font-size:11.5px;margin-top:5px">Archivo: <span class="kbd">' + esc(nm + el.src) + '</span></div></td>' +
+        '<td>' + (el.scope === 'serie'
+            ? '<span class="badge b-as">Serie</span>'
+            : '<span class="badge b-sp">Episodio</span>') + '</td>' +
+      '</tr>';
+    }).join('') + '</table></div>';
+
+  $('#aepname').textContent = 'CVY26_ep' + EP.num + '_GFX_v1.aep';
+
+  const tags = GFX_ELEMENTS.filter(function(e){ return e.slot === '03'; });
+  $('#aeptree').textContent = [
+    'CVY26_ep' + EP.num + '_GFX_v1.aep',
+    '  00_MASTER',
+    '     CVY26_ep' + EP.num + '_GFX_MASTER',
+    '  01_PRECOMPS',
+    '     CVY26_GFX_01_MatchboxMovieLogo',
+    '     CVY26_ep' + EP.num + '_GFX_02_EpisodeTitle',
+    '     CVY26_ep' + EP.num + '_GFX_03_NameTag_Aimee',
+    '     CVY26_ep' + EP.num + '_GFX_03_NameTag_Crosby',
+    '     ... una por personaje del episodio',
+    '     CVY26_GFX_04_MatchboxEndLogo',
+    '     CVY26_GFX_05_MattelEndLogo',
+    '  02_SOURCE',
+    '     CVY26_GFX_01_MatchboxMovieLogo.psd',
+    '     CVY26_ep' + EP.num + '_GFX_02_EpisodeTitle.psd',
+    '     CVY26_GFX_03_NameTagPlate.psd',
+    '     CVY26_GFX_04_MatchboxEndLogo.psd',
+    '     CVY26_GFX_05_MattelEndLogo.mov',
+    '  03_FONTS'
+  ].join(String.fromCharCode(10));
+}
+
 document.addEventListener('click', function(e){
   const cp = e.target.closest('.cp');
   if(cp){ copy(cp.dataset.nm, 'Nombre copiado'); return; }
@@ -375,6 +482,7 @@ document.addEventListener('click', function(e){
 function syncEp(){
   localStorage.setItem(KEY, EP.num);
   render();
+  renderGfx();
   $('#nfiles').textContent = ITEMS.length;
 }
 
