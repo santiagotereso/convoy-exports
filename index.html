@@ -353,10 +353,10 @@ const KEY = 'cvy26_exports_v2';
 let EP = {num: localStorage.getItem(KEY) || '101'};
 
 /* "Bridge Chase!" -> "BridgeChase" : sin espacios, sin signos, sin acentos */
-function epTitleToken(){
-  return (EP_TITLES[EP.num] || 'EpisodeTitle')
-    .replace(/[^A-Za-z0-9]/g,'');
+function titleTokenOf(n){
+  return (EP_TITLES[n] || 'EpisodeTitle').replace(/[^A-Za-z0-9]/g,'');
 }
+function epTitleToken(){ return titleTokenOf(EP.num); }
 function base(){
   return [PROJ.num, PROJ.brand, PROJ.title, PROJ.series, clean(EP.num)||'101', epTitleToken()].join('_');
 }
@@ -455,9 +455,13 @@ const GFX_ELEMENTS = [
    nota:'Lo provee Mattel. Entra tal cual, no se reconstruye ni se recomprime. Es el único gráfico que SÍ queda en el textless.'}
 ];
 
-function gfxName(el){
+/* En el slot 02 el token es el titulo del episodio: BridgeChase, JungleRace...
+   Los de serie no llevan episodio ni titulo. */
+function gfxName(el, n){
+  const ep = n || EP.num;
+  if(el.slot === '02') return 'CVY26_ep' + ep + '_GFX_02_' + titleTokenOf(ep);
   return el.scope === 'episodio'
-    ? 'CVY26_ep' + EP.num + '_GFX_' + el.slot + '_' + el.token
+    ? 'CVY26_ep' + ep + '_GFX_' + el.slot + '_' + el.token
     : 'CVY26_GFX_' + el.slot + '_' + el.token;
 }
 
@@ -489,7 +493,7 @@ function renderGfx(){
       '<tr><th style="width:52px">Ep</th><th style="width:20%">Título en pantalla</th>' +
       '<th>Nombre del archivo y de la precomp</th></tr>' +
       Object.keys(EP_TITLES).map(function(n){
-        const nm = 'CVY26_ep' + n + '_GFX_02_EpisodeTitle';
+        const nm = 'CVY26_ep' + n + '_GFX_02_' + titleTokenOf(n);
         const act = (n === EP.num) ? ' style="background:#16233a"' : '';
         return '<tr' + act + '><td><b>' + n + '</b></td><td>' + esc(EP_TITLES[n]) + '</td>' +
           '<td><div class="fname" style="margin:0">' + esc(nm) +
@@ -506,13 +510,13 @@ function renderGfx(){
     '     CVY26_ep' + EP.num + '_GFX_MASTER',
     '  01_PRECOMPS',
     '     CVY26_GFX_01_MatchboxMovieLogo',
-    '     CVY26_ep' + EP.num + '_GFX_02_EpisodeTitle',
+    '     CVY26_ep' + EP.num + '_GFX_02_' + titleTokenOf(EP.num),
     '     CVY26_GFX_03_NameTags',
     '     CVY26_GFX_04_MatchboxEndLogo',
     '     CVY26_GFX_05_MattelEndLogo',
     '  02_SOURCE',
     '     CVY26_GFX_01_MatchboxMovieLogo.psd',
-    '     CVY26_ep' + EP.num + '_GFX_02_EpisodeTitle.png',
+    '     CVY26_ep' + EP.num + '_GFX_02_' + titleTokenOf(EP.num) + '.png',
     '     CVY26_GFX_03_NameTags_#####.png   (secuencia)',
     '     CVY26_GFX_04_MatchboxEndLogo.psd',
     '     CVY26_GFX_05_MattelEndLogo.mov',
@@ -526,7 +530,7 @@ document.addEventListener('click', function(e){
   const ca = e.target.closest('.copyall');
   if(ca && ca.dataset.sec === '__ep02'){
     copy(Object.keys(EP_TITLES).map(function(n){
-      return 'CVY26_ep' + n + '_GFX_02_EpisodeTitle';
+      return 'CVY26_ep' + n + '_GFX_02_' + titleTokenOf(n);
     }).join(String.fromCharCode(10)), 'Los 8 nombres copiados');
     return;
   }
