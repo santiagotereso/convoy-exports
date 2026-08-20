@@ -122,6 +122,10 @@ footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px so
   <div class="lead">Los cinco elementos de GFX del episodio. <b>La precomp en After Effects y el archivo que la alimenta se llaman igual</b> — cambia solo la extensión. El número de slot (01–05) es fijo y va en orden de aparición, así el panel de proyecto queda ordenado como el episodio.</div>
   <div id="gfxspec"></div>
 
+  <h2>Slot 02 · los ocho title cards <button class="copyall" data-sec="__ep02">Copiar los 8 nombres</button></h2>
+  <div class="lead">El slot 02 es el único que hay que hacer ocho veces. Acá están los ocho nombres ya resueltos — no hay que armar nada a mano ni acordarse del título.</div>
+  <div id="ep02list"></div>
+
   <div class="card">
     <h3 style="margin:0 0 10px;font-size:14px">Las tres reglas que hacen que los 8 episodios salgan iguales</h3>
     <ul>
@@ -150,7 +154,7 @@ footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px so
     <div class="fname" style="padding-right:12px;white-space:pre;overflow-x:auto;word-break:normal">08_Graphics/
   01_MatchboxMovieLogo/     slot 01 · serie
   02_EpisodeTitle/          slot 02 · uno por episodio
-  03_NameTags/              slot 03 · placa + un archivo por personaje + SQ/
+  03_NameTags/              slot 03 · una sola animación: SQ/ + su arte fuente en _src/
   04_MatchboxEndLogo/       slot 04 · serie
   05_MattelEndLogo/         slot 05 · serie, lo provee Mattel
   90_InsertBorders/         workflow aparte, tiene su propio naming
@@ -422,11 +426,11 @@ const GFX_ELEMENTS = [
    que:'Logo / título del episodio',
    token:'EpisodeTitle', src:'.psd',
    nota:'Es el único texto que cambia el nombre del episodio en pantalla.'},
-  {slot:'03', scope:'episodio',
-   que:'Nombre del personaje sobre la placa naranja',
-   token:'NameTag_<Personaje>', src:'.png',
-   srcOverride:'CVY26_GFX_03_NameTag_<Personaje>.png',
-   nota:'Una precomp por personaje: NameTag_Aimee, NameTag_Crosby, NameTag_Charmaine, NameTag_Sean, NameTag_Ted, NameTag_VonSteele. Si el mismo personaje se presenta dos veces, se agrega _02 al final. La placa naranja de fondo es única y vive en 02_SOURCE.'},
+  {slot:'03', scope:'serie',
+   que:'Nombres de los personajes sobre la placa naranja',
+   token:'NameTags', src:'',
+   srcOverride:'CVY26_GFX_03_NameTags_#####.png  (secuencia)',
+   nota:'Es UNA sola animación, no una por personaje: un solo asset, una sola precomp, igual en los ocho episodios. El arte de cada nombre son los archivos fuente que la alimentan y viven en _src/.'},
   {slot:'04', scope:'serie',
    que:'Logo de cierre de Matchbox',
    token:'MatchboxEndLogo', src:'.psd',
@@ -465,6 +469,20 @@ function renderGfx(){
       '</tr>';
     }).join('') + '</table></div>';
 
+  const lista = $('#ep02list');
+  if(lista){
+    lista.innerHTML = '<div class="card" style="padding:0;overflow:hidden"><table>' +
+      '<tr><th style="width:52px">Ep</th><th style="width:20%">Título en pantalla</th>' +
+      '<th>Nombre del archivo y de la precomp</th></tr>' +
+      Object.keys(EP_TITLES).map(function(n){
+        const nm = 'CVY26_ep' + n + '_GFX_02_EpisodeTitle';
+        const act = (n === EP.num) ? ' style="background:#16233a"' : '';
+        return '<tr' + act + '><td><b>' + n + '</b></td><td>' + esc(EP_TITLES[n]) + '</td>' +
+          '<td><div class="fname" style="margin:0">' + esc(nm) +
+            '<button class="cp" data-nm="' + esc(nm) + '">Copiar</button></div></td></tr>';
+      }).join('') + '</table></div>';
+  }
+
   $('#aepname').textContent = 'CVY26_ep' + EP.num + '_GFX_v1.aep';
 
   const tags = GFX_ELEMENTS.filter(function(e){ return e.slot === '03'; });
@@ -475,15 +493,13 @@ function renderGfx(){
     '  01_PRECOMPS',
     '     CVY26_GFX_01_MatchboxMovieLogo',
     '     CVY26_ep' + EP.num + '_GFX_02_EpisodeTitle',
-    '     CVY26_ep' + EP.num + '_GFX_03_NameTag_Aimee',
-    '     CVY26_ep' + EP.num + '_GFX_03_NameTag_Crosby',
-    '     ... una por personaje del episodio',
+    '     CVY26_GFX_03_NameTags',
     '     CVY26_GFX_04_MatchboxEndLogo',
     '     CVY26_GFX_05_MattelEndLogo',
     '  02_SOURCE',
     '     CVY26_GFX_01_MatchboxMovieLogo.psd',
     '     CVY26_ep' + EP.num + '_GFX_02_EpisodeTitle.psd',
-    '     CVY26_GFX_03_NameTagPlate.psd',
+    '     CVY26_GFX_03_NameTags_#####.png   (secuencia)',
     '     CVY26_GFX_04_MatchboxEndLogo.psd',
     '     CVY26_GFX_05_MattelEndLogo.mov',
     '  03_FONTS'
@@ -494,6 +510,12 @@ document.addEventListener('click', function(e){
   const cp = e.target.closest('.cp');
   if(cp){ copy(cp.dataset.nm, 'Nombre copiado'); return; }
   const ca = e.target.closest('.copyall');
+  if(ca && ca.dataset.sec === '__ep02'){
+    copy(Object.keys(EP_TITLES).map(function(n){
+      return 'CVY26_ep' + n + '_GFX_02_EpisodeTitle';
+    }).join(String.fromCharCode(10)), 'Los 8 nombres copiados');
+    return;
+  }
   if(ca){
     const names = ITEMS.filter(function(i){ return i.sec===ca.dataset.sec; }).map(fileName).join('\n');
     copy(names, 'Nombres copiados'); return;
