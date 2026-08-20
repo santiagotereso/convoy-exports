@@ -118,6 +118,7 @@ footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px so
   <div id="sections"></div>
 
 
+  <div id="gfxdeep">
   <h2>Cómo se nombra adentro del AEP de gráficos <span class="cnt">propuesta</span></h2>
   <div class="lead">Los cinco elementos de GFX del episodio. <b>La precomp en After Effects y el archivo que la alimenta se llaman igual</b> — cambia solo la extensión. El número de slot (01–05) es fijo y va en orden de aparición, así el panel de proyecto queda ordenado como el episodio.</div>
   <div id="gfxspec"></div>
@@ -168,6 +169,8 @@ footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px so
       <li><b>En las secuencias se cambia el prefijo, nunca la numeración de frame.</b> Renumerar rompe el vínculo en After Effects: si la secuencia arranca en 00328, sigue arrancando en 00328.</li>
       <li>Las carpetas <span class="kbd">Adobe After Effects Auto-Save</span> y <span class="kbd">Adobe Premiere Pro Auto-Save</span> no se versionan ni se entregan: van a cuarentena.</li>
     </ul>
+  </div>
+
   </div>
 
   <h2>A dónde se sube cada cosa</h2>
@@ -386,6 +389,11 @@ function copy(txt, msg){
     .catch(function(){ toast('No se pudo copiar'); });
 }
 
+/* Se guarda el nodo aparte porque render() reescribe #sections entero y, al
+   vivir el bloque adentro, se perderia en cada redibujo. */
+let GFXDEEP = document.getElementById('gfxdeep');
+if(GFXDEEP && GFXDEEP.parentNode) GFXDEEP.parentNode.removeChild(GFXDEEP);
+
 function render(){
   $('#basepv').innerHTML = 'Prefijo común de este episodio: <b>' + esc(base()) + '</b>_…';
   $('#sections').innerHTML = SECTIONS.map(function(sec){
@@ -409,8 +417,13 @@ function render(){
             '<button class="cp" data-nm="' + esc(nm) + '">Copiar</button></div>' +
           (i.note ? '<div class="callout">' + i.note + '</div>' : '') +
         '</div>';
-      }).join('');
+      }).join('') +
+      (sec.id === 'gfx' ? '<div id="gfxslot"></div>' : '');
   }).join('');
+
+  /* el bloque del AEP vive dentro de la seccion 2, no suelto al final */
+  const slot = $('#gfxslot');
+  if(slot && GFXDEEP) slot.appendChild(GFXDEEP);
 }
 
 
