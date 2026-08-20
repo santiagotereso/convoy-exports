@@ -125,6 +125,7 @@ footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px so
 
   <h2>Slot 02 · los ocho title cards <button class="copyall" data-sec="__ep02">Copiar los 8 nombres</button></h2>
   <div class="lead">El slot 02 es el único que hay que hacer ocho veces. Acá están los ocho nombres ya resueltos — no hay que armar nada a mano ni acordarse del título.</div>
+  <div class="callout" style="margin:0 0 12px">Los ocho van en <b>PNG con alfa</b> (<span class="kbd">.png</span>), no en JPG: el title card se compone sobre el fondo del episodio. Hoy en el disco el <b>101 ya está en PNG</b> y el <b>102 al 105 están en JPG</b> — hay que re-exportarlos desde el arte original. Del <b>106 al 108</b> todavía no hay arte.</div>
   <div id="ep02list"></div>
 
   <div class="card">
@@ -437,8 +438,8 @@ const GFX_ELEMENTS = [
    nota:'Se arma una vez y se reusa igual en los ocho.'},
   {slot:'02', scope:'episodio',
    que:'Logo / título del episodio',
-   token:'EpisodeTitle', src:'.psd',
-   nota:'Es el único texto que cambia el nombre del episodio en pantalla.'},
+   token:'EpisodeTitle', src:'.png',
+   nota:'PNG con alfa: se compone sobre el fondo del episodio, así que no va JPG. Es el único de los cinco que hay que hacer ocho veces.'},
   {slot:'03', scope:'serie',
    que:'Nombres de los personajes sobre la placa naranja',
    token:'NameTags', src:'',
@@ -511,7 +512,7 @@ function renderGfx(){
     '     CVY26_GFX_05_MattelEndLogo',
     '  02_SOURCE',
     '     CVY26_GFX_01_MatchboxMovieLogo.psd',
-    '     CVY26_ep' + EP.num + '_GFX_02_EpisodeTitle.psd',
+    '     CVY26_ep' + EP.num + '_GFX_02_EpisodeTitle.png',
     '     CVY26_GFX_03_NameTags_#####.png   (secuencia)',
     '     CVY26_GFX_04_MatchboxEndLogo.psd',
     '     CVY26_GFX_05_MattelEndLogo.mov',
