@@ -141,7 +141,7 @@ footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px so
     <div class="fname" style="margin-top:8px;padding-right:12px;white-space:pre;overflow-x:auto;word-break:normal" id="aeptree"></div>
     <ul>
       <li>Cuatro carpetas en el panel de proyecto, numeradas para que no se reordenen solas. Nada suelto en la raíz.</li>
-      <li><b>02_SOURCE</b> son los archivos que llama el AEP. El slot 03 entra ahí como <b>una sola secuencia</b> (<span class="kbd">CVY26_GFX_03_NameTags_#####.png</span>): es una única animación con todos los nombres, no un archivo por personaje. El arte de cada nombre que la alimenta vive en <span class="kbd">_src/</span> y no se importa al AEP.</li>
+      <li><b>02_SOURCE</b> son los archivos que llama el AEP. El slot 03 entra ahí como <b>una sola secuencia</b> (<span class="kbd">CVY26_GFX_03_NameTags_#####.png</span>): es la animación completa con los seis nombres, ya renderizada, no un archivo por personaje. Los PNG sueltos con el lettering de cada nombre son el material con el que se armó esa animación: viven en <span class="kbd">_src/</span> y no se importan al AEP.</li>
       <li>El cierre de Mattel (slot 05) es material que provee el cliente: entra tal cual en 02_SOURCE, no se reconstruye ni se recomprime.</li>
       <li>Sin espacios, sin acentos y en inglés: el AEP se entrega a Mattel dentro del GFX Collect y lo abre gente que no habla español.</li>
       <li>Antes de colectar: <i>File → Dependencies → Collect Files</i> con <b>Collect Source Files: All</b> y las fuentes incluidas. No puede quedar nada en rojo ni ningún vínculo fuera de la carpeta del proyecto.</li>
@@ -430,7 +430,7 @@ const GFX_ELEMENTS = [
    que:'Nombres de los personajes sobre la placa naranja',
    token:'NameTags', src:'',
    srcOverride:'CVY26_GFX_03_NameTags_#####.png  (secuencia)',
-   nota:'Es UNA sola animación, no una por personaje: un solo asset, una sola precomp, igual en los ocho episodios. El arte de cada nombre son los archivos fuente que la alimentan y viven en _src/.'},
+   nota:'Es UNA sola animación con los seis nombres entrando, no una por personaje: un solo asset, una sola precomp, igual en los ocho episodios. El asset es la secuencia ya renderizada. Aparte existen los seis PNG sueltos con el lettering de cada nombre (SEAN, AIMEE, TED, CROSBY, CHARMAINE, VON STEELE), que es el material con el que se armó esa animación: viven en _src/ y no se importan al AEP.'},
   {slot:'04', scope:'serie',
    que:'Logo de cierre de Matchbox',
    token:'MatchboxEndLogo', src:'.psd',
