@@ -144,6 +144,28 @@ footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px so
     </ul>
   </div>
 
+
+  <div class="card">
+    <h3 style="margin:0 0 10px;font-size:14px">Dónde vive el arte: <span class="kbd">03_assets/08_Graphics</span></h3>
+    <div class="fname" style="padding-right:12px;white-space:pre;overflow-x:auto;word-break:normal">08_Graphics/
+  01_MatchboxMovieLogo/     slot 01 · serie
+  02_EpisodeTitle/          slot 02 · uno por episodio
+  03_NameTags/              slot 03 · placa + un archivo por personaje + SQ/
+  04_MatchboxEndLogo/       slot 04 · serie
+  05_MattelEndLogo/         slot 05 · serie, lo provee Mattel
+  90_InsertBorders/         workflow aparte, tiene su propio naming
+  99_TEMPLATES/
+  _QUARANTINE/              lo que sobra, a revisar antes de borrar</div>
+    <ul>
+      <li>Las carpetas se numeran con el mismo slot que las precomps: buscar el arte del cierre de Matchbox es ir a <span class="kbd">04_</span> sin preguntarle a nadie.</li>
+      <li><b>Un contenido, un lugar.</b> Hoy los title cards viven en <span class="kbd">EPISODE_CARD/</span> y en <span class="kbd">TITLES/1NN/</span> a la vez, y por lo menos uno está duplicado byte a byte con dos nombres distintos. Todo lo del slot 02 va a una sola carpeta.</li>
+      <li><b>Nada de <span class="kbd">temp</span>, <span class="kbd">oficial</span>, <span class="kbd">final</span> ni <span class="kbd">PENDING</span>.</b> Si un archivo es el bueno, es el único que queda; los otros van a <span class="kbd">_QUARANTINE/</span>. La versión se escribe <span class="kbd">_v01</span>, <span class="kbd">_v02</span>, con dos dígitos y solo en archivos de proyecto.</li>
+      <li><b>Sin UUID ni doble extensión.</b> Lo que se baja del navegador se renombra <i>antes</i> de guardarlo: <span class="kbd">ad6efffa-98ce-….jpg</span> no le dice nada a nadie.</li>
+      <li><b>En las secuencias se cambia el prefijo, nunca la numeración de frame.</b> Renumerar rompe el vínculo en After Effects: si la secuencia arranca en 00328, sigue arrancando en 00328.</li>
+      <li>Las carpetas <span class="kbd">Adobe After Effects Auto-Save</span> y <span class="kbd">Adobe Premiere Pro Auto-Save</span> no se versionan ni se entregan: van a cuarentena.</li>
+    </ul>
+  </div>
+
   <h2>A dónde se sube cada cosa</h2>
   <div class="card">
     <table>
@@ -402,7 +424,8 @@ const GFX_ELEMENTS = [
    nota:'Es el único texto que cambia el nombre del episodio en pantalla.'},
   {slot:'03', scope:'episodio',
    que:'Nombre del personaje sobre la placa naranja',
-   token:'NameTag_<Personaje>', src:'.psd',
+   token:'NameTag_<Personaje>', src:'.png',
+   srcOverride:'CVY26_GFX_03_NameTag_<Personaje>.png',
    nota:'Una precomp por personaje: NameTag_Aimee, NameTag_Crosby, NameTag_Charmaine, NameTag_Sean, NameTag_Ted, NameTag_VonSteele. Si el mismo personaje se presenta dos veces, se agrega _02 al final. La placa naranja de fondo es única y vive en 02_SOURCE.'},
   {slot:'04', scope:'serie',
    que:'Logo de cierre de Matchbox',
@@ -435,7 +458,7 @@ function renderGfx(){
         '<td>' + esc(el.que) + '<div class="em" style="font-size:11.5px;margin-top:3px">' + esc(el.nota) + '</div></td>' +
         '<td><div class="fname" style="margin:0"><span class="lbl">Precomp en AE</span>' + esc(nm) +
           '<button class="cp" data-nm="' + esc(nm) + '">Copiar</button></div>' +
-          '<div class="em" style="font-size:11.5px;margin-top:5px">Archivo: <span class="kbd">' + esc(nm + el.src) + '</span></div></td>' +
+          '<div class="em" style="font-size:11.5px;margin-top:5px">Archivo: <span class="kbd">' + esc(el.srcOverride || (nm + el.src)) + '</span>' + (el.srcOverride ? ' — el arte del nombre es igual en los 8 episodios, por eso el archivo no lleva ep1NN; la precomp sí, porque la animación es de cada episodio.' : '') + '</div></td>' +
         '<td>' + (el.scope === 'serie'
             ? '<span class="badge b-as">Serie</span>'
             : '<span class="badge b-sp">Episodio</span>') + '</td>' +
