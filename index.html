@@ -407,11 +407,10 @@ const GFX_ELEMENTS = [
    nota:'Lo provee Mattel. Entra tal cual, no se reconstruye ni se recomprime. Es el único gráfico que SÍ queda en el textless.'}
 ];
 
-/* En el slot 02 el token es el titulo del episodio: BridgeChase, JungleRace...
-   Los de serie no llevan episodio ni titulo. */
+/* El token es siempre fijo, tambien en el slot 02: el episodio ya esta en ep1NN
+   y el titulo del capitulo no entra en el nombre. Los de serie no llevan ep. */
 function gfxName(el, n){
   const ep = n || EP.num;
-  if(el.slot === '02') return 'CVY26_ep' + ep + '_GFX_02_' + titleTokenOf(ep);
   return el.scope === 'episodio'
     ? 'CVY26_ep' + ep + '_GFX_' + el.slot + '_' + el.token
     : 'CVY26_GFX_' + el.slot + '_' + el.token;
