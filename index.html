@@ -123,54 +123,6 @@ footer{max-width:1200px;margin:40px auto 0;padding:16px 30px 0;border-top:1px so
   <div class="lead">Los cinco elementos de GFX del episodio. <b>La precomp en After Effects y el archivo que la alimenta se llaman igual</b> — cambia solo la extensión. El número de slot (01–05) es fijo y va en orden de aparición, así el panel de proyecto queda ordenado como el episodio.</div>
   <div id="gfxspec"></div>
 
-  <h2>Slot 02 · los ocho title cards <button class="copyall" data-sec="__ep02">Copiar los 8 nombres</button></h2>
-  <div class="lead">El slot 02 es el único que hay que hacer ocho veces. Acá están los ocho nombres ya resueltos — no hay que armar nada a mano ni acordarse del título.</div>
-  <div class="callout" style="margin:0 0 12px">Los ocho van en <b>PNG con alfa</b> (<span class="kbd">.png</span>), no en JPG: el title card se compone sobre el fondo del episodio. Hoy en el disco el <b>101 ya está en PNG</b> y el <b>102 al 105 están en JPG</b> — hay que re-exportarlos desde el arte original. Del <b>106 al 108</b> todavía no hay arte.</div>
-  <div id="ep02list"></div>
-
-  <div class="card">
-    <h3 style="margin:0 0 10px;font-size:14px">Las tres reglas que hacen que los 8 episodios salgan iguales</h3>
-    <ul>
-      <li><b>Si no dice <span class="kbd">ep1NN</span>, es de serie.</b> Los slots 01, 04 y 05 son idénticos en los ocho episodios: se construyen una vez y se reusan sin tocar. Si los editás para un episodio, los estás rompiendo para los otros siete. Solo los slots 02 y 03 cambian por episodio y por eso llevan el token del episodio.</li>
-      <li><b>La precomp se llama igual que su archivo.</b> <span class="kbd">CVY26_GFX_01_MatchboxMovieLogo.psd</span> alimenta a la precomp <span class="kbd">CVY26_GFX_01_MatchboxMovieLogo</span>. Si buscás uno encontrás el otro, y cuando se colecta el proyecto no hay que adivinar qué archivo era cuál.</li>
-      <li><b>La versión vive solo en el nombre del <span class="kbd">.aep</span>.</b> Adentro del proyecto no hay <span class="kbd">_final</span>, <span class="kbd">_ok</span>, <span class="kbd">_bueno</span>, <span class="kbd">_copy</span> ni <span class="kbd">_v2</span>. Si una comp quedó vieja, se borra; no se le agrega sufijo.</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3 style="margin:0 0 10px;font-size:14px">Estructura del proyecto</h3>
-    <div class="fname" style="padding-right:12px"><span class="lbl">Archivo del proyecto</span><span id="aepname"></span></div>
-    <div class="fname" style="margin-top:8px;padding-right:12px;white-space:pre;overflow-x:auto;word-break:normal" id="aeptree"></div>
-    <ul>
-      <li>Cuatro carpetas en el panel de proyecto, numeradas para que no se reordenen solas. Nada suelto en la raíz.</li>
-      <li><b>02_SOURCE</b> son los archivos que llama el AEP. El slot 03 entra ahí como <b>una sola secuencia</b> (<span class="kbd">CVY26_GFX_03_NameTags_#####.png</span>): es la animación completa con los seis nombres, ya renderizada, no un archivo por personaje. Los PNG sueltos con el lettering de cada nombre son el material con el que se armó esa animación: viven en <span class="kbd">_src/</span> y no se importan al AEP.</li>
-      <li>El cierre de Mattel (slot 05) es material que provee el cliente: entra tal cual en 02_SOURCE, no se reconstruye ni se recomprime.</li>
-      <li>Sin espacios, sin acentos y en inglés: el AEP se entrega a Mattel dentro del GFX Collect y lo abre gente que no habla español.</li>
-      <li>Antes de colectar: <i>File → Dependencies → Collect Files</i> con <b>Collect Source Files: All</b> y las fuentes incluidas. No puede quedar nada en rojo ni ningún vínculo fuera de la carpeta del proyecto.</li>
-    </ul>
-  </div>
-
-
-  <div class="card">
-    <h3 style="margin:0 0 10px;font-size:14px">Dónde vive el arte: <span class="kbd">03_assets/08_Graphics</span></h3>
-    <div class="fname" style="padding-right:12px;white-space:pre;overflow-x:auto;word-break:normal">08_Graphics/
-  01_MatchboxMovieLogo/     slot 01 · serie
-  02_EpisodeTitle/          slot 02 · uno por episodio
-  03_NameTags/              slot 03 · una sola animación: SQ/ + su arte fuente en _src/
-  04_MatchboxEndLogo/       slot 04 · serie
-  05_MattelEndLogo/         slot 05 · serie, lo provee Mattel
-  90_InsertBorders/         workflow aparte, tiene su propio naming
-  99_TEMPLATES/
-  _QUARANTINE/              lo que sobra, a revisar antes de borrar</div>
-    <ul>
-      <li>Las carpetas se numeran con el mismo slot que las precomps: buscar el arte del cierre de Matchbox es ir a <span class="kbd">04_</span> sin preguntarle a nadie.</li>
-      <li><b>Un contenido, un lugar.</b> Hoy los title cards viven en <span class="kbd">EPISODE_CARD/</span> y en <span class="kbd">TITLES/1NN/</span> a la vez, y por lo menos uno está duplicado byte a byte con dos nombres distintos. Todo lo del slot 02 va a una sola carpeta.</li>
-      <li><b>Nada de <span class="kbd">temp</span>, <span class="kbd">oficial</span>, <span class="kbd">final</span> ni <span class="kbd">PENDING</span>.</b> Si un archivo es el bueno, es el único que queda; los otros van a <span class="kbd">_QUARANTINE/</span>. La versión se escribe <span class="kbd">_v01</span>, <span class="kbd">_v02</span>, con dos dígitos y solo en archivos de proyecto.</li>
-      <li><b>Sin UUID ni doble extensión.</b> Lo que se baja del navegador se renombra <i>antes</i> de guardarlo: <span class="kbd">ad6efffa-98ce-….jpg</span> no le dice nada a nadie.</li>
-      <li><b>En las secuencias se cambia el prefijo, nunca la numeración de frame.</b> Renumerar rompe el vínculo en After Effects: si la secuencia arranca en 00328, sigue arrancando en 00328.</li>
-      <li>Las carpetas <span class="kbd">Adobe After Effects Auto-Save</span> y <span class="kbd">Adobe Premiere Pro Auto-Save</span> no se versionan ni se entregan: van a cuarentena.</li>
-    </ul>
-  </div>
 
   </div>
 
@@ -487,53 +439,13 @@ function renderGfx(){
       '</tr>';
     }).join('') + '</table></div>';
 
-  const lista = $('#ep02list');
-  if(lista){
-    lista.innerHTML = '<div class="card" style="padding:0;overflow:hidden"><table>' +
-      '<tr><th style="width:52px">Ep</th><th style="width:20%">Título en pantalla</th>' +
-      '<th>Nombre del archivo y de la precomp</th></tr>' +
-      Object.keys(EP_TITLES).map(function(n){
-        const nm = 'CVY26_ep' + n + '_GFX_02_' + titleTokenOf(n);
-        const act = (n === EP.num) ? ' style="background:#16233a"' : '';
-        return '<tr' + act + '><td><b>' + n + '</b></td><td>' + esc(EP_TITLES[n]) + '</td>' +
-          '<td><div class="fname" style="margin:0">' + esc(nm) +
-            '<button class="cp" data-nm="' + esc(nm) + '">Copiar</button></div></td></tr>';
-      }).join('') + '</table></div>';
-  }
 
-  $('#aepname').textContent = 'CVY26_ep' + EP.num + '_GFX_v1.aep';
-
-  const tags = GFX_ELEMENTS.filter(function(e){ return e.slot === '03'; });
-  $('#aeptree').textContent = [
-    'CVY26_ep' + EP.num + '_GFX_v1.aep',
-    '  00_MASTER',
-    '     CVY26_ep' + EP.num + '_GFX_MASTER',
-    '  01_PRECOMPS',
-    '     CVY26_GFX_01_MatchboxMovieLogo',
-    '     CVY26_ep' + EP.num + '_GFX_02_' + titleTokenOf(EP.num),
-    '     CVY26_GFX_03_NameTags',
-    '     CVY26_GFX_04_MatchboxEndLogo',
-    '     CVY26_GFX_05_MattelEndLogo',
-    '  02_SOURCE',
-    '     CVY26_GFX_01_MatchboxMovieLogo.psd',
-    '     CVY26_ep' + EP.num + '_GFX_02_' + titleTokenOf(EP.num) + '.png',
-    '     CVY26_GFX_03_NameTags_#####.png   (secuencia)',
-    '     CVY26_GFX_04_MatchboxEndLogo.psd',
-    '     CVY26_GFX_05_MattelEndLogo.mov',
-    '  03_FONTS'
-  ].join(String.fromCharCode(10));
 }
 
 document.addEventListener('click', function(e){
   const cp = e.target.closest('.cp');
   if(cp){ copy(cp.dataset.nm, 'Nombre copiado'); return; }
   const ca = e.target.closest('.copyall');
-  if(ca && ca.dataset.sec === '__ep02'){
-    copy(Object.keys(EP_TITLES).map(function(n){
-      return 'CVY26_ep' + n + '_GFX_02_' + titleTokenOf(n);
-    }).join(String.fromCharCode(10)), 'Los 8 nombres copiados');
-    return;
-  }
   if(ca){
     const names = ITEMS.filter(function(i){ return i.sec===ca.dataset.sec; }).map(fileName).join('\n');
     copy(names, 'Nombres copiados'); return;
